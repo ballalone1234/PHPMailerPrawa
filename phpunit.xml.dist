@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php" colors="true" beStrictAboutOutputDuringTests="false" beStrictAboutTestsThatDoNotTestAnything="false" failOnWarning="false" failOnRisky="false">
+    <testsuites>
+        <testsuite name="CustomNewTestsOnly">
+            <file>test/SendMailScriptTest.php</file>
+        </testsuite>
+    </testsuites>
+    <coverage processUncoveredFiles="false">
+        <include>
+            <directory suffix=".php">./</directory>
+        </include>
+    </coverage>
+</phpunit>
