@@ -35,7 +35,6 @@ class SendMailScriptTest extends TestCase
     public function testPreSendBuildsMimeMessage(): void
     {
         $mail = new TestMailerBase(true); // Enable exceptions so failures are clearer
-
         // Replicate configuration from test.php (credentials replaced / sanitized for test safety)
         $mail->isSMTP();
         $mail->Host       = 'live.smtp.mailtrap.io';
@@ -72,12 +71,23 @@ class SendMailScriptTest extends TestCase
 
         $mime = $mail->getSentMIMEMessage();
         $this->assertNotEmpty($mime, 'Generated MIME message should not be empty');
-        $this->assertStringContainsString('Here is the subject', $mime);
-        $this->assertStringContainsString('This is the HTML message body', $mime);
-        $this->assertStringContainsString('Mailer <hello@demomailtrap.co>', $mime, 'From header should be present');
-        $this->assertStringContainsString('Joe User <ballpol.127@gmail.com>', $mime, 'To header should be present');
-        $this->assertStringContainsString('file1.txt', $mime, 'Attachment filename should appear in MIME');
-
+        // PHPUnit 5: use assertContains for string containment
+        $this->assertContains('Here is the subject', $mime);
+        $this->assertContains('This is the HTML message body', $mime);
+        $this->assertContains('Mailer <hello@demomailtrap.co>', $mime, 'From header should be present');
+        $this->assertContains('Joe User <ballpol.127@gmail.com>', $mime, 'To header should be present');
+        $this->assertContains('file1.txt', $mime, 'Attachment filename should appear in MIME');
+        fwrite(STDERR, "[MIME bytes] ".strlen($mime).PHP_EOL);
+                $artifactDir = __DIR__ . '/artifacts';
+        if (!is_dir($artifactDir)) {
+            @mkdir($artifactDir);
+        }
+        file_put_contents($artifactDir.'/mime_preSend.eml', $mime);
+        $artifactDir = __DIR__ . '/artifacts';
+        if (!is_dir($artifactDir)) {
+            @mkdir($artifactDir);
+        }
+        file_put_contents($artifactDir.'/mime_preSend.eml', $mime);
         // Cleanup temp file
         @unlink($tmp1);
     }
@@ -88,6 +98,7 @@ class SendMailScriptTest extends TestCase
      */
     public function testPreSendFailsWithMissingHost(): void
     {
+        
         $mail = new TestMailerBase(true);
         $mail->isSMTP();
         $mail->SMTPAuth = true;
@@ -102,7 +113,7 @@ class SendMailScriptTest extends TestCase
         // Intentionally omit Host to provoke failure. preSend in some versions will still succeed,
         // so we guard with conditional expectations: if it succeeds, Host may be optional; if it fails, that's acceptable.
         $result = $mail->preSend();
-        $this->assertIsBool($result);
+       $this->assertTrue(is_bool($result), 'Result should be boolean');
         if ($result === false) {
             $this->assertNotEmpty($mail->ErrorInfo, 'ErrorInfo should be populated on failure');
         } else {
