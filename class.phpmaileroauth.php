@@ -1,7 +1,7 @@
 <?php
 /**
  * PHPMailer - PHP email creation and transport class.
- * PHP Version 5.4
+ * PHP Version 8.0+
  * @package PHPMailer
  * @link https://github.com/PHPMailer/PHPMailer/ The PHPMailer GitHub project
  * @author Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>
@@ -17,6 +17,8 @@
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+declare(strict_types=1);
+
 /**
  * PHPMailerOAuth - PHPMailer subclass adding OAuth support.
  * @package PHPMailer
@@ -29,25 +31,25 @@ class PHPMailerOAuth extends PHPMailer
      * The OAuth user's email address
      * @var string
      */
-    public $oauthUserEmail = '';
+    public string $oauthUserEmail = '';
 
     /**
      * The OAuth refresh token
      * @var string
      */
-    public $oauthRefreshToken = '';
+    public string $oauthRefreshToken = '';
 
     /**
      * The OAuth client ID
      * @var string
      */
-    public $oauthClientId = '';
+    public string $oauthClientId = '';
 
     /**
      * The OAuth client secret
      * @var string
      */
-    public $oauthClientSecret = '';
+    public string $oauthClientSecret = '';
 
     /**
      * An instance of the PHPMailerOAuthGoogle class.

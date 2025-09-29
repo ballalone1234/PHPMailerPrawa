@@ -1,16 +1,16 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Get an OAuth2 token from Google.
- * * Install this script on your server so that it's accessible
+ * Install this script on your server so that it's accessible
  * as [https/http]://<yourdomain>/<folder>/get_oauth_token.php
  * e.g.: http://localhost/phpmail/get_oauth_token.php
- * * Ensure dependencies are installed with 'composer install'
- * * Set up an app in your Google developer console
- * * Set the script address as the app's redirect URL
+ * Ensure dependencies are installed with 'composer install'
+ * Set up an app in your Google developer console
+ * Set the script address as the app's redirect URL
  * If no refresh token is obtained when running this file, revoke access to your app
  * using link: https://accounts.google.com/b/0/IssuedAuthSubTokens and run the script again.
- * This script requires PHP 5.4 or later
- * PHP Version 5.4
  */
 
 namespace League\OAuth2\Client\Provider;
@@ -24,11 +24,10 @@ use Psr\Http\Message\ResponseInterface;
 
 session_start();
 
-//If this automatic URL doesn't work, set it yourself manually
-$redirectUri = isset($_SERVER['HTTPS']) ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-//$redirectUri = 'http://localhost/phpmailer/get_oauth_token.php';
+// If this automatic URL doesn't work, set it yourself manually
+$redirectUri = ($_SERVER['HTTPS'] ?? false) ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
 
-//These details obtained are by setting up app in Google developer console.
+// These details obtained are by setting up app in Google developer console.
 $clientId = 'RANDOMCHARS-----duv1n2.apps.googleusercontent.com';
 $clientSecret = 'RANDOMCHARS-----lGyjPcRtvP';
 
@@ -37,12 +36,6 @@ class Google extends AbstractProvider
     use BearerAuthorizationTrait;
 
     const ACCESS_TOKEN_RESOURCE_OWNER_ID = 'id';
-
-    /**
-     * @var string If set, this will be sent to google as the "access_type" parameter.
-     * @link https://developers.google.com/accounts/docs/OAuth2WebServer#offline
-     */
-    protected $accessType;
 
     /**
      * @var string If set, this will be sent to google as the "hd" parameter.

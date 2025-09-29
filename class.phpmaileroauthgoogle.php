@@ -1,7 +1,7 @@
 <?php
 /**
  * PHPMailer - PHP email creation and transport class.
- * PHP Version 5.4
+ * PHP Version 8.0+
  * @package PHPMailer
  * @link https://github.com/PHPMailer/PHPMailer/ The PHPMailer GitHub project
  * @author Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>
@@ -17,19 +17,14 @@
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/**
- * PHPMailerOAuthGoogle - Wrapper for League OAuth2 Google provider.
- * @package PHPMailer
- * @author @sherryl4george
- * @author Marcus Bointon (@Synchro) <phpmailer@synchromedia.co.uk>
- * @link https://github.com/thephpleague/oauth2-client
- */
+declare(strict_types=1);
+
 class PHPMailerOAuthGoogle
 {
-    private $oauthUserEmail = '';
-    private $oauthRefreshToken = '';
-    private $oauthClientId = '';
-    private $oauthClientSecret = '';
+    private string $oauthUserEmail;
+    private string $oauthRefreshToken;
+    private string $oauthClientId;
+    private string $oauthClientSecret;
 
     /**
      * @param string $UserEmail
@@ -38,10 +33,10 @@ class PHPMailerOAuthGoogle
      * @param string $RefreshToken
      */
     public function __construct(
-        $UserEmail,
-        $ClientSecret,
-        $ClientId,
-        $RefreshToken
+        string $UserEmail,
+        string $ClientSecret,
+        string $ClientId,
+        string $RefreshToken
     ) {
         $this->oauthClientId = $ClientId;
         $this->oauthClientSecret = $ClientSecret;

@@ -1,0 +1,36 @@
+Date: Mon, 29 Sep 2025 19:45:32 +0000
+To: Joe User <ballpol.127@gmail.com>
+From: Mailer <hello@demomailtrap.co>
+Subject: Here is the subject
+Message-ID: <CY0o1dKZhFep4DfBy3n9XPfIecV39GZjfwZ4xgE@DESKTOP-EJC0T30>
+X-Mailer: PHPMailer 6.11.0 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="b1=_CY0o1dKZhFep4DfBy3n9XPfIecV39GZjfwZ4xgE"
+Content-Transfer-Encoding: 8bit
+
+--b1=_CY0o1dKZhFep4DfBy3n9XPfIecV39GZjfwZ4xgE
+Content-Type: multipart/alternative;
+ boundary="b2=_CY0o1dKZhFep4DfBy3n9XPfIecV39GZjfwZ4xgE"
+
+--b2=_CY0o1dKZhFep4DfBy3n9XPfIecV39GZjfwZ4xgE
+Content-Type: text/plain; charset=us-ascii
+
+This is the body in plain text for non-HTML mail clients
+
+--b2=_CY0o1dKZhFep4DfBy3n9XPfIecV39GZjfwZ4xgE
+Content-Type: text/html; charset=us-ascii
+
+This is the HTML message body <b>in bold!</b>
+
+
+--b2=_CY0o1dKZhFep4DfBy3n9XPfIecV39GZjfwZ4xgE--
+
+--b1=_CY0o1dKZhFep4DfBy3n9XPfIecV39GZjfwZ4xgE
+Content-Type: application/octet-stream; name=file1.txt
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=file1.txt
+
+QXR0YWNobWVudCBPbmU=
+
+--b1=_CY0o1dKZhFep4DfBy3n9XPfIecV39GZjfwZ4xgE--

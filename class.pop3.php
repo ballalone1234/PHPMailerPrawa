@@ -1,7 +1,7 @@
 <?php
 /**
  * PHPMailer POP-Before-SMTP Authentication Class.
- * PHP Version 5
+ * PHP Version 8.0+
  * @package PHPMailer
  * @link https://github.com/PHPMailer/PHPMailer/
  * @author Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>
@@ -16,6 +16,8 @@
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
+
+declare(strict_types=1);
 
 /**
  * PHPMailer POP-Before-SMTP Authentication Class.
@@ -32,23 +34,20 @@ class POP3
     /**
      * The POP3 PHPMailer Version number.
      * @var string
-     * @access public
      */
-    public $Version = '5.2.28';
+    public string $Version = '5.2.28';
 
     /**
      * Default POP3 port number.
-     * @var integer
-     * @access public
+     * @var int
      */
-    public $POP3_PORT = 110;
+    public int $POP3_PORT = 110;
 
     /**
      * Default timeout in seconds.
-     * @var integer
-     * @access public
+     * @var int
      */
-    public $POP3_TIMEOUT = 30;
+    public int $Timeout = 30;
 
     /**
      * POP3 Carriage Return + Line Feed.
