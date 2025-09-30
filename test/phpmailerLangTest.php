@@ -1,51 +1,18 @@
 <?php
-/**
- * PHPMailer - language file tests
- * Requires PHPUnit 3.3 or later.
- *
- * PHP version 5.0.0
- *
- * @package PHPMailer
- * @author Andy Prevost
- * @author Marcus Bointon <phpmailer@synchromedia.co.uk>
- * @copyright 2004 - 2009 Andy Prevost
- * @copyright 2010 Marcus Bointon
- * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
- */
+use PHPUnit\Framework\TestCase;
 
 require_once '../PHPMailerAutoload.php';
 
-/**
- * PHPMailer - PHP email transport unit test class
- * Performs authentication tests
- */
-class PHPMailerLangTest extends PHPUnit_Framework_TestCase
+class PHPMailerLangTest extends TestCase
 {
-    /**
-     * Holds a phpmailer instance.
-     * @private
-     * @var PHPMailer
-     */
     public $Mail;
-
-    /**
-     * @var string Default include path
-     */
     public $INCLUDE_DIR = '../';
 
-    /**
-     * Run before each test is started.
-     */
-    public function setUp()
+    public function setUp(): void
     {
         $this->Mail = new PHPMailer;
     }
 
-    /**
-     * Test language files for missing and excess translations
-     * All languages are compared with English
-     * @group languages
-     */
     public function testTranslations()
     {
         $this->Mail->setLanguage('en');
@@ -55,12 +22,11 @@ class PHPMailerLangTest extends PHPUnit_Framework_TestCase
             if ($fileInfo->isDot()) {
                 continue;
             }
-            $matches = array();
-            //Only look at language files, ignore anything else in there
+            $matches = [];
             if (preg_match('/^phpmailer\.lang-([a-z_]{2,})\.php$/', $fileInfo->getFilename(), $matches)) {
-                $lang = $matches[1]; //Extract language code
-                $PHPMAILER_LANG = array(); //Language strings get put in here
-                include $fileInfo->getPathname(); //Get language strings
+                $lang = $matches[1];
+                $PHPMAILER_LANG = [];
+                include $fileInfo->getPathname();
                 $missing = array_diff(array_keys($definedStrings), array_keys($PHPMAILER_LANG));
                 $extra = array_diff(array_keys($PHPMAILER_LANG), array_keys($definedStrings));
                 if (!empty($missing)) {
@@ -70,6 +36,9 @@ class PHPMailerLangTest extends PHPUnit_Framework_TestCase
                     $err .= "\nExtra translations in $lang: " . implode(', ', $extra);
                 }
             }
+        }
+        if (empty($err)) {
+            echo "No missing or extra translations found.\n";
         }
         $this->assertEmpty($err, $err);
     }

@@ -1,6 +1,6 @@
-projectKey=ballalone1234_PHPMailerPrawa_NEW_VERSION
+projectKey=ballalone1234_PHPMailerPrawa_rector
 serverUrl=http://localhost:9000
 serverVersion=25.9.0.112764
-dashboardUrl=http://localhost:9000/dashboard?id=ballalone1234_PHPMailerPrawa_NEW_VERSION
-ceTaskId=56465db9-21bb-4dfa-b357-a6d26b17e574
-ceTaskUrl=http://localhost:9000/api/ce/task?id=56465db9-21bb-4dfa-b357-a6d26b17e574
+dashboardUrl=http://localhost:9000/dashboard?id=ballalone1234_PHPMailerPrawa_rector
+ceTaskId=29698d07-e835-474e-bf1b-2a4dab78a5f7
+ceTaskUrl=http://localhost:9000/api/ce/task?id=29698d07-e835-474e-bf1b-2a4dab78a5f7
